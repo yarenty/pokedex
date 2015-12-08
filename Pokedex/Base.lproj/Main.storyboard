@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="pokemon.TTF">
+            <string>Pokemon--Solid</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -22,9 +27,33 @@
                             </imageView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o3k-lj-rF2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokedex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFg-HM-ZES">
+                                        <rect key="frame" x="235" y="-34" width="129.5" height="111"/>
+                                        <fontDescription key="fontDescription" name="Pokemon--Solid" family="Pokemon  Solid" pointSize="34"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byR-7G-DNH">
+                                        <rect key="frame" x="545" y="15" width="40" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="GxX-OS-usG"/>
+                                            <constraint firstAttribute="height" constant="30" id="XCB-H4-TyA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="🔊"/>
+                                        <connections>
+                                            <action selector="startStopMusic:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Ap-JI-gln"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.86875000000000002" green="0.0" blue="0.0081330251279999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="BNs-hG-dJ0"/>
+                                    <constraint firstAttribute="trailing" secondItem="byR-7G-DNH" secondAttribute="trailing" constant="15" id="BdJ-pC-LRc"/>
+                                    <constraint firstItem="qFg-HM-ZES" firstAttribute="centerY" secondItem="o3k-lj-rF2" secondAttribute="centerY" id="M9p-zT-dWg"/>
+                                    <constraint firstItem="qFg-HM-ZES" firstAttribute="centerX" secondItem="o3k-lj-rF2" secondAttribute="centerX" id="h0I-rM-0pm"/>
+                                    <constraint firstItem="byR-7G-DNH" firstAttribute="top" secondItem="o3k-lj-rF2" secondAttribute="top" constant="15" id="oFt-Vd-DBr"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F5t-zu-UAX">
@@ -75,7 +104,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="w52-Fa-jME">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="search for pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="w52-Fa-jME">
                                 <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="f3V-qF-AqG"/>
@@ -105,6 +134,8 @@
                     </view>
                     <connections>
                         <outlet property="collection" destination="F5t-zu-UAX" id="Oxi-U2-eZJ"/>
+                        <outlet property="musicBtn" destination="byR-7G-DNH" id="GEf-XV-5Gj"/>
+                        <outlet property="searchBar" destination="w52-Fa-jME" id="JFj-d9-xbR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
