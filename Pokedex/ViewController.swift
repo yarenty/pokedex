@@ -46,7 +46,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             musicPlayer = try AVAudioPlayer(contentsOfURL: NSURL(string: path!)!)
             musicPlayer.prepareToPlay()
             musicPlayer.numberOfLoops = -1 //infinite
-            musicPlayer.play()
+           // musicPlayer.play()
             
         } catch let err as NSError {
             print(err.debugDescription)
@@ -62,8 +62,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             musicPlayer.play()
             musicBtn.setTitle( "🔊", forState: .Normal)
         }
-        // set to stop = 🔇
-        // set to play = 🔊
     }
     
     func parsePokemonCSV() {
@@ -72,17 +70,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         do {
             let csv = try CSVParser(contentsOfURL: path)
-            
             let rows = csv.rows
             
             for row in rows {
                 let pokeId = Int(row["id"]!)!
                 let name = row["identifier"]!
-                
                 pokemons.append(Pokemon(name: name, id: pokeId))
-                
             }
-            
         } catch let err as NSError {
             print(err.debugDescription)
         }
