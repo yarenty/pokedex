@@ -173,6 +173,9 @@
                                                         <state key="normal" title="⏎">
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="backTapped:" destination="A7o-Em-dLX" eventType="touchUpInside" id="dEM-GR-KSx"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tarszasadas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2c-Sr-D62">
                                                         <rect key="frame" x="40" y="0.0" width="560" height="30"/>
@@ -378,7 +381,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="attackLbl" destination="9Mu-Qe-Ia7" id="n2f-Tp-68p"/>
+                        <outlet property="defenseLbl" destination="D8V-87-Kto" id="WEx-gS-Cc0"/>
+                        <outlet property="descLbl" destination="l1f-xa-bid" id="6hF-mb-LCn"/>
+                        <outlet property="heightLbl" destination="m8E-kz-oHS" id="xFm-Pp-8P4"/>
+                        <outlet property="mainImg" destination="MUl-Jx-67h" id="o3T-KE-eid"/>
                         <outlet property="nameLbl" destination="m2c-Sr-D62" id="3eW-5X-8R6"/>
+                        <outlet property="nextEvolLbl" destination="onI-7Q-xkg" id="gjW-2o-HL1"/>
+                        <outlet property="nextImg" destination="xSd-18-Yyr" id="2MI-UN-uui"/>
+                        <outlet property="pokedoxIdLbl" destination="rqM-FN-1GA" id="FDb-Lp-2vA"/>
+                        <outlet property="prevImg" destination="6tn-Nq-7FM" id="Qv3-zI-RyD"/>
+                        <outlet property="typeLbl" destination="uK3-VZ-KhC" id="5nI-xT-uJ9"/>
+                        <outlet property="weightLbl" destination="fBf-Il-dnj" id="JWD-dH-FNB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVb-w6-oRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
