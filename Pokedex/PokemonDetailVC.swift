@@ -37,6 +37,19 @@ class PokemonDetailVC: UIViewController {
         super.viewDidLoad()
         
         nameLbl.text = pokemon.name
+        mainImg.image = UIImage(named: "\(pokemon.id)")
+        pokedoxIdLbl.text = "\(pokemon.id)"
+        
+        pokemon.downloadPokemonDetails { () -> () in
+            // this will be called after download is done
+            self.descLbl.text = self.pokemon.desc
+            self.typeLbl.text = self.pokemon.type
+            self.heightLbl.text = self.pokemon.height
+            self.weightLbl.text = self.pokemon.weight
+            self.defenseLbl.text = self.pokemon.defense
+            self.attackLbl.text = self.pokemon.attack
+            
+        }
     }
     
     
