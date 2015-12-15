@@ -19,6 +19,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var musicBtn: UIButton!
     var musicPlayer: AVAudioPlayer!
     
+    @IBOutlet weak var myPokemonsBtn: UIButton!
+    
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     
@@ -148,6 +151,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             collection.reloadData()
         }
     }
+    
+    @IBAction func showMyPokemons(sender: AnyObject) {
+    
+        print("show my pokemons!")
+    }
+    
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PokemonDetailVC" {
