@@ -22,7 +22,7 @@ class Pokemon {
     private var _nextEvolID: String!
     private var _nextEvolLvl: String!
     private var _pokemonURL: String!
-    
+    private var _bigImg: NSData?
     
     var name: String {
         return _name
@@ -92,22 +92,23 @@ class Pokemon {
         }
         return _pokemonURL
     }
-    
+    var bigImg: NSData? {
+        return _bigImg
+    }
     
     init( name: String, id: Int){
         _name = name
         _id = id
-        
         _pokemonURL = "\(URL_BASE)\(URL_POKEMON)\(_id)/"
     }
     
     func downloadPokemonDetails(completed: DownloadComplete) {
         
         let url = NSURL(string: _pokemonURL)!
+        
         Alamofire.request(.GET, url).responseJSON {
-            response in let result = response.result
             
-            print(result.debugDescription)
+            response in let result = response.result
             
             if let dict = result.value as? Dictionary<String,AnyObject> {
                 
@@ -125,13 +126,7 @@ class Pokemon {
                     self._weight = weight
                 }
                 
-                print(self._defense)
-                print(self._attack)
-                print(self._height)
-                print(self._weight)
-                
                 if let types = dict["types"] as? [Dictionary<String,String>]  where types.count > 0 {
-                    print(types.debugDescription)
                     
                     if let name = types[0]["name"] { // first one
                         self._type = name.capitalizedString
@@ -147,8 +142,6 @@ class Pokemon {
                 } else {
                     self._type = ""
                 }
-                
-                print(self._type)
                 
                 if let descArr = dict["descriptions"] as? [Dictionary<String,String>] where descArr.count > 0 {
                     if let urlDesc = descArr[0]["resource_uri"] {
@@ -188,19 +181,37 @@ class Pokemon {
                                 if let lvl = evolD[0]["level"] as? Int {
                                     self._nextEvolLvl = "\(lvl)"
                                 }
-                                
-                                print(self._nextEvol)
-                                print(self._nextEvolID)
-                                print(self._nextEvolLvl)
                             }
                         }
                     }
-                    
-                    
                 }
-                
-                
             }
+        }
+    }
+    
+    
+    func getBigImg(letsDispaly: ImageDownload) {
+        
+        var poid = "001"
+        
+        if (id<10) {
+            poid = "00\(id)"
+        } else if id < 100 {
+            poid = "0\(id)"
+        } else {
+            poid = "\(id)"
+        }
+        
+        let uri = "http://assets22.pokemon.com/assets/cms2/img/pokedex/full/\(poid).png"
+        
+        Alamofire.request(.GET, uri).responseData{
+            response in let result = response.result
+            
+            if let img: NSData = result.value  {
+                self._bigImg = img
+
+            }
+            letsDispaly()
         }
     }
     

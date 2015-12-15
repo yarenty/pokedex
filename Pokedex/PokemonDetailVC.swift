@@ -32,6 +32,7 @@ class PokemonDetailVC: UIViewController {
     
     @IBOutlet weak var nameLbl: UILabel!
     
+    @IBOutlet weak var bigImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +40,24 @@ class PokemonDetailVC: UIViewController {
         nameLbl.text = pokemon.name
         mainImg.image = UIImage(named: "\(pokemon.id)")
         pokedoxIdLbl.text = "\(pokemon.id)"
+        self.bigImg.image = UIImage(named: "\(self.pokemon.id)")
+        self.nextImg.image = UIImage(named: "\(self.pokemon.id)")
+        self.prevImg.image = UIImage(named: "\(self.pokemon.id)")
         
         pokemon.downloadPokemonDetails { () -> () in
             // this will be called after download is done
             self.updateUI()
         }
+        
+        pokemon.getBigImg { () -> () in
+            // this will be called after download is done
+            self.updateBigImg()
+        }
+        
+        
+
+        
+
     }
     
     
@@ -65,6 +79,15 @@ class PokemonDetailVC: UIViewController {
         }
         
         self.prevImg.image = UIImage(named: "\(self.pokemon.id)")
+        
+        
+    }
+    
+    func updateBigImg() {
+        if let img = self.pokemon.bigImg {
+            self.bigImg.image = UIImage(data: img)
+            self.bigImg.contentMode = UIViewContentMode.ScaleAspectFit
+        }
     }
     
     

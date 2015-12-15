@@ -15,3 +15,4 @@ let URL_POKEMON = "/api/v1/pokemon/"
 // own custom clojure 
 typealias DownloadComplete = () -> ()
 
+typealias ImageDownload = () -> ()
